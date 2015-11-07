@@ -29,7 +29,7 @@
         moduleConstants: function (moduleName) {
             return {
                 partialsPath: 'partials/',
-                modulePath: 'modules/' + moduleName + '/'
+                modulePath: 'scripts/modules/' + moduleName + '/'
             };
         },
 
