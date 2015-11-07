@@ -18,8 +18,10 @@
         applicationName: "project-200",
 
         applicationDependencies: [
-            'ngResource',
+            'ui.router',
+            'snap',
             'ngAnimate',
+            'ngResource',
             'ui.bootstrap',
             'ngSanitize'
         ],

@@ -1,0 +1,37 @@
+{
+  "name": "project-200",
+  "homepage": "https://github.com/zimmed/project200-web-client",
+  "authors": [
+    "zimmed <zimmed@zimmed.io>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7",
+    "angular-resource": "~1.4.7",
+    "angular-route": "~1.4.7",
+    "angular-sanitize": "~1.4.7",
+    "angular-touch": "~1.4.7",
+    "angular-animate": "~1.4.7",
+    "angular-bootstrap": "~0.14.3",
+    "bootstrap": "~3.3.5",
+    "angular-snap": "~1.8.5",
+    "Snap.js": "snapjs#~1.9.3",
+    "json3": "~3.3.2",
+    "es5-shim": "~4.2.0",
+    "angular-mocks": "~1.4.7"
+  }
+}
