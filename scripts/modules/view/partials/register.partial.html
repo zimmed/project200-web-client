@@ -1,8 +1,11 @@
 <div class="register-page">
     <div class="img-container">
         <div class="text-center pull-right photo">
-            <img src="images/flat-avatar.png" class="user-avatar img-circle img-responsive" />
-            <h1><small>THE MULTIPLAYER CARD GAME</small></h1>
+            <img data-artist="Lydia Jayne" data-artist-site="https://www.behance.net/LydiaJayne"
+                 data-license="Do not re-use without explicit consent from site author and artist."
+                 src="images/logo.r1.png" class="user-avatar img-circle img-responsive" />
+            <h1 class="hidden-xs display-sm"><small>THE MULTIPLAYER CARD GAME</small></h1>
+            <h2>SIGN UP</h2>
         </div>
     </div>
 
@@ -28,7 +31,7 @@
                     <div class="form-group" ng-class="{'has-error': form.conf_email.$invalid && !form.conf_email.$pristine}">
                         <input type="email" class="form-control input-lg" id="conf-email" placeholder="RE-ENTER EMAIL"
                                ng-model="data.conf_email" ng-required="true" ng-enter-focus-next="2" tabindex="3"
-                               ng-maxlength="128" ng-minlength="6" ng-must-match="{{data.email}}">
+                               ng-maxlength="128" ng-minlength="6" ng-must-match="data.email">
                     </div>
                 </div>
                 <div class="form-groups col-lg-6 col-md-12 col-sm-12 col-xs-10 col-xs-offset-1 col-sm-offset-0 col-lg-offset-0 col-md-offset-0">
@@ -40,7 +43,7 @@
                     <div class="form-group" ng-class="{'has-error': form.conf_password.$invalid && !form.conf_password.$pristine}">
                         <input type="password" class="form-control input-lg" id="conf-password" placeholder="RE-ENTER PASS"
                                ng-model="data.conf_password" ng-required="true" tabindex="5" ng-minlength="8"
-                               ng-maxlength="128" ui-validate="'$value==data.password'" ui-validate-watch="'data.password'">
+                               ng-maxlength="128">
                     </div>
                     <div class="form-group text-center noselect" style="cursor:default;margin-top:10px;height:48px;">
                         <label class="checkbox1" for="agree">
@@ -75,7 +78,4 @@
     </div>
 </div>
 
-<footer class="template-credits hidden-xs">
-    This site was built with the <a target="_blank" href="http://startangular.com/product/versatile-angularjs-theme/">Versatile Dashboard</a> template.
-</footer>
-</div>
+<credits-footer></credits-footer>

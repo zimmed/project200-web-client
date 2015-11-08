@@ -2,7 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <meta name="authors" content="Dave Zimmelman, zimmed@zimmed.io">
+    <meta name="artists" content="LydiaJayne [https://www.behance.net/LydiaJayne]">
+    <meta name="source" content="https://github.com/zimmed/project200-web-client">
+    <meta name="license-source" content="All source code is licensed under MIT. Re-use with credit to author.">
+    <meta name="license-ip" content="The website and associated application names are the sole property of
+                                     the owner, Dave Zimmelman -- copyright (c) 2015. Do not re-use without
+                                     consent.">
+    <meta name="license-art" content="Logo design is the shared property of the site author and artist. Do
+                                      not re-use without consent. All other game art is the property of its
+                                      respected artist(s), and re-used under open-source/free licensing for
+                                      this project.">
+    <meta name="license-notice" content="All licenses are subject to change.">
+    <meta name="apple-mobile-web-app-capable" content="yes">
 
     <title>Project 200: A Multiplayer Card Game.</title>
 
@@ -16,7 +29,9 @@
 <body ng-app="project-200">
 
 
-    <div ui-view></div>
+    <div class="scroll-outer">
+        <div class="scroll-inner" ui-view></div>
+    </div>
 
     <script type="text/javascript" src="vendor/crypto-js/build/rollups/hmac-md5.js"></script>
     <script type="text/javascript" src="vendor/crypto-js/build/rollups/sha256.js"></script>
@@ -30,9 +45,9 @@
         <script type="text/javascript" src="vendor/angular-resource/angular-resource.js"></script>
         <script type="text/javascript" src="vendor/angular-sanitize/angular-sanitize.js"></script>
         <script type="text/javascript" src="vendor/angular-animate/angular-animate.js"></script>
-        <script type="text/javascript" src="vendor/angular-ui/build/angular-ui.js"></script>
+        <!-- script type="text/javascript" src="vendor/angular-ui/build/angular-ui.js"></script -->
         <script type="text/javascript" src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
-        <script type="text/javascript" src="vendor/angular-ui-validate/dist/validate.js"></script>
+        <!-- script type="text/javascript" src="vendor/angular-ui-validate/dist/validate.js"></script -->
         <script type="text/javascript" src="vendor/angular-snap/angular-snap.js"></script>
         <script type="text/javascript" src="vendor/angular-touch/angular-touch.js"></script>
         <script type="text/javascript" src="vendor/angular-bootstrap/ui-bootstrap.js"></script>
@@ -46,6 +61,8 @@
         <script type="text/javascript" src="scripts/modules/user/user.module.js"></script>
             <script type="text/javascript" src="scripts/modules/user/factories/authentication.factory.js"></script>
         <script type="text/javascript" src="scripts/modules/view/view.module.js"></script>
+            <script type="text/javascript" src="scripts/modules/view/directives/welcome.logo.directive.js"></script>
+            <script type="text/javascript" src="scripts/modules/view/directives/credits.footer.directive.js"></script>
             <script type="text/javascript" src="scripts/modules/view/controllers/dashboard.controller.js"></script>
             <script type="text/javascript" src="scripts/modules/view/controllers/welcome.controller.js"></script>
             <script type="text/javascript" src="scripts/modules/view/controllers/register.controller.js"></script>

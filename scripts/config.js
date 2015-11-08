@@ -19,7 +19,6 @@
 
         applicationDependencies: [
             'ui.router',
-            'ui.validate',
             'snap',
             'ngAnimate',
             'ngResource',

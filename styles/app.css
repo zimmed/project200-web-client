@@ -8,13 +8,20 @@
     }
 }
 @media (max-width: 414px) {
-    .register-page .photo .user-avatar {
-        max-width: 128px;
+    .register-page .photo h1 {
+        display: none;
     }
-}
-@media (max-width: 375px) {
     .register-page .photo .user-avatar {
         max-width: 64px;
+        display: inline-block;
+        left: 20px;
+        vertical-align: middle;
+    }
+    .register-page .photo h2 {
+        line-height: 24px;
+        position: relative;
+        float: right;
+        margin-right: 15%;
     }
     .register-page .table-form > .form-groups::before {
         position: absolute;
@@ -40,10 +47,32 @@
     }
     .register-page .table-form > .form-groups:last-child::before {
         height: 102%;
+        bottom: 0px;
     }
 }
 
 /** Generic Classes **/
+.scroll-outer {
+    –webkit-overflow-scrolling: touch;
+    overflow: scroll;
+}
+.scroll-outer:before {
+    content:'';
+    width: 1px;
+    float: left;
+    height: calc(100% + 1px);
+    margin-left: -1px;
+
+}
+.scroll-outer:after{
+    content:'';
+    width: 100%;
+    clear: both;
+}
+
+.scroll-inner {
+    height: calc(100% + 1px);
+}
 
 .error-message {
     color: white;
