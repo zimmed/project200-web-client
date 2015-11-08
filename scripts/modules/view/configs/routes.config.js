@@ -16,7 +16,7 @@
                 templateUrl: config.modulePath + config.partialsPath + 'base.partial.html'
             })
             .state('welcome', {
-                url: '',
+                url: '/welcome',
                 parent: 'base',
                 templateUrl: config.modulePath + config.partialsPath + 'welcome.partial.html',
                 controller: 'WelcomeCtrl'

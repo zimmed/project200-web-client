@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
     <meta name="authors" content="Dave Zimmelman, zimmed@zimmed.io">
     <meta name="artists" content="LydiaJayne [https://www.behance.net/LydiaJayne]">
     <meta name="source" content="https://github.com/zimmed/project200-web-client">
@@ -16,6 +16,7 @@
                                       this project.">
     <meta name="license-notice" content="All licenses are subject to change.">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
 
     <title>Project 200: A Multiplayer Card Game.</title>
 
@@ -30,7 +31,7 @@
 
 
     <div class="scroll-outer">
-        <div class="scroll-inner" ui-view></div>
+        <div class="scroll-inner" ui-view data-autoscroll="true"></div>
     </div>
 
     <script type="text/javascript" src="vendor/crypto-js/build/rollups/hmac-md5.js"></script>
@@ -61,12 +62,15 @@
         <script type="text/javascript" src="scripts/modules/user/user.module.js"></script>
             <script type="text/javascript" src="scripts/modules/user/factories/authentication.factory.js"></script>
         <script type="text/javascript" src="scripts/modules/view/view.module.js"></script>
-            <script type="text/javascript" src="scripts/modules/view/directives/welcome.logo.directive.js"></script>
             <script type="text/javascript" src="scripts/modules/view/directives/credits.footer.directive.js"></script>
             <script type="text/javascript" src="scripts/modules/view/controllers/dashboard.controller.js"></script>
             <script type="text/javascript" src="scripts/modules/view/controllers/welcome.controller.js"></script>
             <script type="text/javascript" src="scripts/modules/view/controllers/register.controller.js"></script>
             <script type="text/javascript" src="scripts/modules/view/controllers/login.controller.js"></script>
             <script type="text/javascript" src="scripts/modules/view/configs/routes.config.js"></script>
+<script>
+    document.documentElement.requestFullscreen();
+    //window.scrollTo(0,1);
+</script>
 </body>
 </html>

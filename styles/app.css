@@ -1,3 +1,35 @@
+@media (min-width: 1083px) {
+    .form-content {
+        width: 600px !important;
+    }
+    .register-page, .login-page {
+       padding-right: calc(100% - 1041px);
+    }
+    .register-page::before, .login-page::before {
+        width: 433px;
+    }
+}
+
+@media (min-width: 767px) {
+    .welcome-page .photo:hover::before {
+        content: ' ';
+        position: absolute;
+        z-index: 6;
+        margin-left: -103px;
+        margin-top: 10px;
+        height: 204px;
+        width: 204px;
+        border-radius: 102px;
+        background: rgba(255,255,255,0) url('../images/github.png') no-repeat 0 -3px;
+        background-size: 204px 204px;
+        color: black;
+        font-weight: bold;
+        line-height:202px;
+        opacity: 0.6;
+        cursor: pointer;
+    }
+}
+
 @media (max-width: 768px) {
 
     .ng-scope {
@@ -6,72 +38,41 @@
     .login-page.ng-scope::before {
         height: 0;
     }
+    .register-page .photo .user-avatar,
+    .login-page .photo .user-avatar {
+        max-width: 128px;
+    }
 }
 @media (max-width: 414px) {
     .register-page .photo h1 {
         display: none;
     }
     .register-page .photo .user-avatar {
-        max-width: 64px;
+        max-width: 96px;
         display: inline-block;
         left: 20px;
         vertical-align: middle;
     }
     .register-page .photo h2 {
-        line-height: 24px;
+        line-height: 54px;
         position: relative;
         float: right;
         margin-right: 15%;
     }
-    .register-page .table-form > .form-groups::before {
-        position: absolute;
-        content: ' ';
-        left: -40px;
-        width: 30px;
-        margin-top: 7px;
-        height: 100%;
-        background: #06551f;
-        z-index: 1;
-    }
-    .register-page .table-form > .form-groups > .form-group:not(.noselect)::before {
-        position: absolute;
-        z-index: 2;
-        content: ' ';
-        color: #d9534f;
-        font-size: 16px;
-        font-weight: 600;
-        margin-top: 10px;
-        left: -30px;
-        width: 20px;
-        height: 20px;
-    }
-    .register-page .table-form > .form-groups:last-child::before {
-        height: 102%;
-        bottom: 0px;
+    .register-page .img-container {
+        padding-top: 0;
+        padding-bottom: 0;
     }
 }
 
 /** Generic Classes **/
-.scroll-outer {
-    –webkit-overflow-scrolling: touch;
-    overflow: scroll;
-}
-.scroll-outer:before {
-    content:'';
-    width: 1px;
-    float: left;
-    height: calc(100% + 1px);
-    margin-left: -1px;
 
-}
-.scroll-outer:after{
-    content:'';
-    width: 100%;
-    clear: both;
+.login-page .photo img, .register-page .photo img {
+    cursor: pointer;
 }
 
-.scroll-inner {
-    height: calc(100% + 1px);
+.form-content {
+    max-width: 700px !important;
 }
 
 .error-message {
@@ -141,6 +142,8 @@ footer.template-credits {
     opacity: 0.7;
     font-style: italic;
     z-index: 3;
+    white-space: nowrap;
+    overflow:hidden;
 }
 
 footer.template-credits a {

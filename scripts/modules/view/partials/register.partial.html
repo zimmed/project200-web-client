@@ -1,9 +1,11 @@
 <div class="register-page">
-    <div class="img-container">
+    <div class="img-container noselect">
         <div class="text-center pull-right photo">
-            <img data-artist="Lydia Jayne" data-artist-site="https://www.behance.net/LydiaJayne"
-                 data-license="Do not re-use without explicit consent from site author and artist."
-                 src="images/logo.r1.png" class="user-avatar img-circle img-responsive" />
+            <a href="#/" title="Go Back">
+                <img data-artist="Lydia Jayne" data-artist-site="https://www.behance.net/LydiaJayne"
+                     data-license="Do not re-use without explicit consent from site author and artist."
+                     src="images/logo.r1.png" class="user-avatar img-circle img-responsive" alt="Logo" />
+            </a>
             <h1 class="hidden-xs display-sm"><small>THE MULTIPLAYER CARD GAME</small></h1>
             <h2>SIGN UP</h2>
         </div>
@@ -16,7 +18,7 @@
 
                 <p ng-model="data.errors" style="padding-left:15px; padding-right:15px;"
                    ng-class="data.errorLevel" class="error-message">{{data.errors}}</p>
-                <div class="form-groups col-lg-6 col-md-12 col-sm-12 col-xs-10 col-xs-offset-1 col-sm-offset-0 col-lg-offset-0 col-md-offset-0">
+                <div class="form-groups col-xs-12">
                     <div class="form-group" ng-class="{'has-error': form.username.$invalid && !form.username.$pristine}">
                         <input type="text" class="form-control input-lg" id="username" name="username"
                                ng-model="data.username" placeholder="USERNAME" ng-required="true"
@@ -34,14 +36,14 @@
                                ng-maxlength="128" ng-minlength="6" ng-must-match="data.email">
                     </div>
                 </div>
-                <div class="form-groups col-lg-6 col-md-12 col-sm-12 col-xs-10 col-xs-offset-1 col-sm-offset-0 col-lg-offset-0 col-md-offset-0">
+                <div class="form-groups col-xs-12">
                     <div class="form-group" ng-class="{'has-error': form.password.$invalid && !form.password.$pristine}">
                         <input type="password" class="form-control input-lg" id="password" name="password"
                                placeholder="PASSWORD" ng-model="data.password" ng-required="true"
                                ng-enter-focus-next="1" tabindex="4" ng-minlength="8" ng-maxlength="128">
                     </div>
                     <div class="form-group" ng-class="{'has-error': form.conf_password.$invalid && !form.conf_password.$pristine}">
-                        <input type="password" class="form-control input-lg" id="conf-password" placeholder="RE-ENTER PASS"
+                        <input type="password" class="form-control input-lg" id="conf-password" placeholder="RE-ENTER PASSWORD"
                                ng-model="data.conf_password" ng-required="true" tabindex="5" ng-minlength="8"
                                ng-maxlength="128">
                     </div>
@@ -56,9 +58,9 @@
                 </div>
             </div>
             <div class="table-form">
-                <div class="form-groups error-message col-lg-6 col-md-12 col-sm-12 col-xs-10 col-xs-offset-1 col-sm-offset-0 col-lg-offset-0 col-md-offset-0">
+                <div class="form-groups error-message col-xs-12">
                 </div>
-                <div class="form-groups col-lg-6 col-md-12 col-sm-12 col-xs-10 col-xs-offset-1 col-sm-offset-0 col-lg-offset-0 col-md-offset-0">
+                <div class="form-groups col-xs-12">
                     <button ng-disabled="form.$invalid" type="submit" class="btn btn-default register"><img src="images/arrow.png" alt="submit login"></button>
                 </div>
             </div>
