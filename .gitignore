@@ -2,3 +2,5 @@
 vendor_old
 vendor/*
 !vendor/versatile-dashboard
+vendor/versatile-dashboard/styles/modified/bower_components
+vendor/versatile-dashboard/styles/versatile-theme-*

@@ -7,7 +7,7 @@
             function(config, $stateProvider, $urlRouterProvider) {
 
         $urlRouterProvider.when('/dashboard', '/dashboard/overview');
-        $urlRouterProvider.otherwise('/login');
+        $urlRouterProvider.otherwise('/welcome');
 
         $stateProvider
             .state('base', {
@@ -15,11 +15,23 @@
                 url: '',
                 templateUrl: config.modulePath + config.partialsPath + 'base.partial.html'
             })
+            .state('welcome', {
+                url: '',
+                parent: 'base',
+                templateUrl: config.modulePath + config.partialsPath + 'welcome.partial.html',
+                controller: 'WelcomeCtrl'
+            })
             .state('login', {
                 url: '/login',
                 parent: 'base',
                 templateUrl: config.modulePath + config.partialsPath + 'login.partial.html',
                 controller: 'LoginCtrl'
+            })
+            .state('register', {
+                url: '/register',
+                parent: 'base',
+                templateUrl: config.modulePath + config.partialsPath + 'register.partial.html',
+                controller: 'RegisterCtrl'
             })
             .state('dashboard', {
                 url: '/dashboard',

@@ -33,6 +33,9 @@
     "es5-shim": "~4.2.0",
     "angular-mocks": "~1.4.7",
     "angular-ui-router": "ui-router#~0.2.15",
-    "font-awesome": "fontawesome#~4.4.0"
+    "font-awesome": "fontawesome#~4.4.0",
+    "crypto-js": "CryptoJS#~3.1.12",
+    "angular-ui-validate": "~1.2.1",
+    "angular-ui": "~0.4.0"
   }
 }

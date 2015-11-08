@@ -1,6 +1,6 @@
 'use strict';
 
-(function (module, angular) {
+(function (module, angular, injections) {
     /**
      * config.js - Config and setup for main app controller.
      * Originally created for EDMEAN.js (https://github.com/zimmed/EDMEAN.js)
@@ -19,6 +19,7 @@
 
         applicationDependencies: [
             'ui.router',
+            'ui.validate',
             'snap',
             'ngAnimate',
             'ngResource',
@@ -39,6 +40,7 @@
             localPort: "80",
             socketUrl: "localhost",
             socketPort: "27016",
+            socketPath: "/ws",
             secure: false,
             socketSecure: false,
             title: "Project 200",
@@ -60,6 +62,12 @@
                 config.applicationDependencies
             );
             application.requires.push(controller.getModuleName('config'));
+            for (var i = 0; i < injections.length; i++) {
+                var factory = module[injections[i]];
+                application.factory(injections[i], function () {
+                    return factory;
+                })
+            }
             return application;
         },
 
@@ -96,4 +104,4 @@
     /** Expose controller **/
     module.AppCtrl = controller;
 
-})(window, window.angular);
+})(window, window.angular, ['CryptoJS']);

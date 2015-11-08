@@ -4,7 +4,8 @@
 
     ctrl.createModule('view', [
         ctrl.getModuleName('config'),
-        ctrl.getModuleName('core')
+        ctrl.getModuleName('core'),
+        ctrl.getModuleName('user')
     ]);
 
 })(window.AppCtrl);

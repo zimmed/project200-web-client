@@ -1,6 +1,6 @@
 'use strict';
 
-(function (ctrl, WebSocket) {
+(function (ctrl, WebSocket, mathlib) {
     /**
      * socket.service.js - WebSocket service
      * Adapted for generic WebSocket, from original socket.io case.
@@ -9,9 +9,9 @@
      * @email: zimmed@zimmed.io
      */
 
-    ctrl.getModule('core').service('Socket', ['Config', '$timeout',
-        function (Config, $timeout) {
-            var address = Config.socketUrl + ':' + Config.socketPort,
+    ctrl.getModule('core').service('Socket', ['Config', '$timeout', 'CryptoJS',
+        function (Config, $timeout, CryptoJS) {
+            var address = Config.socketUrl + ':' + Config.socketPort + Config.socketPath,
                 protocol = Config.socketSecure ? 'wss://' : 'ws://';
 
             var Handler = function (method, args) {
@@ -34,7 +34,16 @@
             this._session_uid = null;
             this.connected = false;
 
+            this.encrypt = function (message, key) {
+                throw "Not Implemented.";
+            };
+
+            this.decrypt = function (message, iv, key) {
+                throw "Not Implemented.";
+            };
+
             this.connect = function () {
+                if (this.connected) return;
                 var self = this;
                 this.socket = new WebSocket(protocol + address);
                 this.socket.onopen = function () {
@@ -52,7 +61,13 @@
                     }
                 };
                 this.socket.onmessage = function (event) {
-                    self.handle(event);
+                    var data = JSON.parse(event.data);
+                    /*
+                    if (data.sensitive) {
+                        data = JSON.parse(this.decrypt(data.secret, data.iv, this.client_token));
+                    }
+                    */
+                    self.handle(data);
                 };
                 this.socket.onclose = function () {
                     self.connected = false;
@@ -81,10 +96,21 @@
             };
 
             this.emit = function (eventName, data) {
-                data = data || {};
+                var secret, data = data || {};
+                /*
+                if (data.sensitive) {
+                    delete data['sensitive'];
+                    secret = this.encrypt(JSON.stringify(data), this.client_token);
+                    data = {
+                        secret: secret.value,
+                        iv: secret.iv,
+                        sensitive: true
+                    };
+                }
+                */
                 if (this.connected) {
                     data['type'] = eventName;
-                    this.socket.send(JSON.parse(data));
+                    this.socket.send(JSON.stringify(data));
                 }
             };
 
@@ -104,29 +130,33 @@
             };
 
             this.handle = function (event) {
-                var handler, stack, data = event.data || false;
-                if (data && data.type && data.type in this._listeners) {
-                    stack = this._listeners[data.type].slice(0);
+                var handler, stack;
+                console.log(event);
+                if (event && event.type && this._listeners.hasOwnProperty(event.type)) {
+                    stack = this._listeners[event.type].slice(0);
                     handler = stack.pop();
-                    handler(this.socket, data, stack);
+                    handler(this, event, stack);
+                } else {
+                    console.log('uncaught event: ' + event.type);
                 }
             };
 
-            this.on('connect', function (event, self) {
-                if (event.status == 200 && event.data) {
-                    self.client_token = event.data.client_token;
+            this.on('connect', function (event) {
+                if (event.status == 200) {
+                    this.client_token = event.client_token;
+                    this.connected = true;
                 }
-            }, [this]);
-            this.on('user-signin', function (event, self) {
-                if (event.status == 200 && event.data) {
-                    self._session_uid = event.data.uid;
+            });
+            this.on('user-signin', function (event) {
+                if (event.status == 200) {
+                    this._session_uid = event.uid;
                 }
-            }, [this]);
-            this.on('user-signout', function (event, self) {
+            });
+            this.on('user-signout', function (event) {
                 self._session_uid = null;
                 self._session_token = null;
-            }, [this]);
+            });
         }
     ]);
 
-})(window.AppCtrl, window.WebSocket);
+})(window.AppCtrl, window.WebSocket, window.Math);

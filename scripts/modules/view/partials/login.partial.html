@@ -2,39 +2,42 @@
 	<div class="img-container">
 		<div class="text-center pull-right photo">
 			<img src="images/flat-avatar.png" class="user-avatar img-circle img-responsive" />
-				<h1>VERSATILE<br/ > <span>DASHBOARD</span><br /><small>Free Version</small></h1>
+				<h1><small>THE MULTIPLAYER CARD GAME</small></h1>
 			</div>
 		</div>
 		
 		<div class="form-content">
-			<div class="pro-link">
-				<a href="http://www.strapui.com/">MORE PREMIUM THEME</a>
-			</div>
 			<form role="form" class="bottom-75" ng-submit="submit()">
-			<div class="table-form">
-				<div class="form-groups">
-					<div class="form-group">
-						<input type="text" class="form-control input-lg" id="" placeholder="EMAIL">
-					</div>
-					<div class="form-group">
-						<input type="password" class="form-control input-lg" id="" placeholder="PASSWORD">
-					</div>
-					
-						
-				</div>	
-				<div class="button-container">
-					<button type="submit" class="btn btn-default login"><img src="images/arrow.png" alt=""></button>
-				</div>
-			</div>
-			<div class="remember">
-				<label class="checkbox1" for="Option"> 
-					<input id="Option" type="checkbox" class="">
-					<span></span>
-				</label>
-				remember me
-				<span class="pass"> forgot password?</span>
-			</div>			
+                <p ng-model="form.errors" ng-class="form.errorLevel" class="error-message">{{form.errors}}</p>
+                <fieldset ng-disabled="awaitingResponse">
+                <div class="table-form">
+                    <div class="form-groups">
+                        <div class="form-group">
+                            <input ng-enter-focus-next="1" name="username" id="username" type="text" tabindex="1"
+                                   class="form-control input-lg" ng-model="form.username" placeholder="USERNAME"
+                                   ng-required="true" ng-minlength="4" ng-maxlength="24"
+                                   ng-pattern="/^[a-zA-Z0-9\._\-]+$/">
+                        </div>
+                        <div class="form-group">
+                            <input name="password" id="password" type="password" tabindex="2" class="form-control input-lg"
+                                   ng-model="form.password" ng-minlength="8" ng-maxlength="128" placeholder="PASSWORD"
+                                   ng-required="true">
+                        </div>
+
+
+                    </div>
+                    <div class="button-container">
+                        <button tabindex="3" type="submit" class="btn btn-default login">
+                            <img src="images/arrow.png" alt="submit login">
+                        </button>
+                    </div>
+                </div>
+                </fieldset>
 			</form>
 		</div>			
 	</div>
+
+<footer class="template-credits hidden-xs">
+	This site was built with the <a target="_blank" href="http://startangular.com/product/versatile-angularjs-theme/">Versatile Dashboard</a> template.
+</footer>
 </div>
