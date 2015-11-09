@@ -86,6 +86,14 @@
 }
 .form-group.has-error > input {
     border-color: orange !important;
+    border-width: 2px;
+}
+.form-group.has-error > input:focus {
+    width:50%;
+}
+.form-group.is-valid > input {
+    border-color: cadetblue !important;
+    border-width: 2px;
 }
 
 li.separator {

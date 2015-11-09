@@ -15,11 +15,15 @@
                         for (i = 0; i < depth; i++) {
                             el = el.parent();
                         }
-                        el = el.next();
+                        el = el.next()[0];
                         for (i = 0; i < depth; i++) {
-                            el = el.children()[0];
+                            console.log(el);
+                            window.el = el;
+                            el = el.children[0]
+                            window.el2 = el;
                         }
                         el.focus();
+                        window.scope = scope;
                     }
                 });
             }

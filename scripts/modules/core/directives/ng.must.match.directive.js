@@ -5,33 +5,28 @@
     ctrl.getModule('core').directive('ngMustMatch', function () {
         return {
             require: "ngModel",
-            scope: {
-                val: '='
-            },
             restrict: 'A',
             link: function (scope, element, attrs, ngModel) {
 
-                var otherModel = ngModel.$$parentForm[attrs.ngMustMatch];
-                console.log(scope);
-                scope.$watch('$viewValue', function (value) {
-                    console.log(value);
+                var getScopeVal = function (name, scope) {
+                    var i, names = name.split('.'), s = scope;
+                    for (i = 0; i < names.length; i++) {
+                        s = s[names[i]];
+                    }
+                    return s;
+                };
+                scope.$watch(attrs.ngModel, function (value) {
+                    var otherVal = getScopeVal(attrs.ngMustMatch, scope),
+                        valid = (value && value === otherVal);
+                    ngModel.$setValidity('mustMatch', valid);
+                    scope.form[attrs.name].$valid = (scope.form[attrs.name].$valid && valid);
                 });
-                otherModel.$watch('$viewValue', function (value) {
-                    console.log(value);
+                scope.$watch(attrs.ngMustMatch, function (value) {
+                    var otherVal = getScopeVal(attrs.ngModel, scope),
+                        valid = (value && value === otherVal);
+                    ngModel.$setValidity('mustMatch', valid);
+                    scope.form[attrs.name].$valid = (scope.form[attrs.name].$valid && valid);
                 });
-                /*
-                scope.$watch(attrs.ngModel, function () {
-                    console.log(ngModel);
-                    console.log(attrs);
-                    ngModel.$setValidity('mustMatch', ngModel.$viewValue === attrs.ngMustMatch);
-                });
-
-                attrs.$observe('ngMustMatch', function (value) {
-                    console.log(ngModel);
-                    console.log(attrs);
-                    ngModel.$setValidity('mustMatch', ngModel.$viewValue === attrs.ngMustMatch);
-                });
-                */
             }
         };
     });

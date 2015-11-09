@@ -4,6 +4,7 @@ hash node 2>/dev/null || { echo >&2 "nodejs required but not installed. Use: sud
 hash npm 2>/dev/null || { echo >&2 "node package manager required, but not installed. Use: sudo apt-get install npm"; exit 1; }
 hash bower 2>/dev/null || { echo >&2 "bower required, but not installed. Use: sudo npm install -g bower"; exit 1; }
 hash yui-compressor 2>/dev/null || { echo >&2 "yui-compressor required, but not installed. Use: sudo apt-get install yui-compressor"; exit 1; }
+hash lessc 2>/dev/null || { echo >&2 "less compiler required, but not installed. Use: sudo npm install -g less"; exit 1; }
 
 SCRIPT=`realpath $0`
 SCRIPTPATH=`dirname $SCRIPT`
