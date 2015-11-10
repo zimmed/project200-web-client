@@ -12,46 +12,60 @@
     </div>
 
     <div class="form-content">
-        <form name="form" role="form" ng-submit="submit()" novalidate>
+        <form name="registerForm" role="form" ng-submit="submit()" novalidate>
             <fieldset ng-disabled="awaitingResponse">
             <div class="table-form">
 
                 <p ng-model="data.errors" style="padding-left:15px; padding-right:15px;"
                    ng-class="data.errorLevel" class="error-message">{{data.errors}}</p>
                 <div class="form-groups col-xs-12">
-                    <div class="form-group" ng-class="{'has-error': !form.username.$valid && !form.username.$pristine,
-                                                       'is-valid': !!form.username.$valid && !form.username.$pristine}">
+                    <div class="form-group" ng-class="{'has-error': !registerForm.username.$valid && !registerForm.username.$pristine,
+                                                       'is-valid': !!registerForm.username.$valid && !registerForm.username.$pristine}">
                         <input type="text" class="form-control input-lg" id="username" name="username"
                                ng-model="data.username" placeholder="USERNAME" ng-required="true"
-                               ng-enter-focus-next="1" tabindex="1" ng-pattern="/^[a-zA-Z0-9\._\-]+$/"
-                               ng-minlength="4" ng-maxlength="24">
+                               ng-enter-focus-next="1" tabindex="1" ng-pattern="/^[a-zA-Z0-9\._\-]+$/" ng-focus="registerForm.username.isFocused = true"
+                               ng-blur="registerForm.username.isFocused = false"
+                               ng-minlength="4" ng-maxlength="24" parse-attributes-to="errorMessages.attrs">
+                        <div class="right fade popover in"
+                             ng-hide="!registerForm.username.$dirty || !!registerForm.username.$valid || !registerForm.username.isFocused">
+                            <div class="arrow"></div>
+                            <div class="popover-inner">
+                                <div class="popover-content">{{parseErrors(registerForm.username)}}</div>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group" ng-class="{'has-error': !form.email.$valid && !form.email.$pristine,
                                                        'is-valid': !!form.email.$valid && !form.email.$pristine}">
                         <input type="email" class="form-control input-lg" id="email" name="email" placeholder="EMAIL"
                                ng-model="data.email" ng-required="true" ng-enter-focus-next="1" tabindex="2"
-                               ng-maxlength="128" ng-minlength="6">
+                               ng-maxlength="128" ng-minlength="6"
+                               popover-on-error="registerForm" parse-attributes-to="errorMessages.attrs">
                     </div>
                     <div class="form-group" ng-class="{'has-error': !form.conf_email.$valid && !form.conf_email.$pristine,
                                                        'is-valid': !!form.conf_email.$valid && !form.conf_email.$pristine}">
-                        <input type="email" class="form-control input-lg" id="conf_email" name="conf_email"
+                        <input type="text" class="form-control input-lg" id="conf_email" name="conf_email"
                                placeholder="RE-ENTER EMAIL" ng-model="data.conf_email" ng-required="true"
-                               ng-enter-focus-next="2" tabindex="3" ng-must-match="data.email">
+                               ng-enter-focus-next="2" tabindex="3" ng-must-match="data.email"
+                               uib-popover="{{parseErrors(form.conf_email)}}" popover-placement="right"
+                               popover-on-error="registerForm" parse-attributes-to="errorMessages.attrs">
                     </div>
                 </div>
                 <div class="form-groups col-xs-12">
                     <div class="form-group" ng-class="{'has-error': !form.password.$valid && !form.password.$pristine,
                                                        'is-valid': !!form.password.$valid && !form.password.$pristine}">
                         <input type="password" class="form-control input-lg" id="password" name="password"
-                               popover="{{errors.password}}"
                                placeholder="PASSWORD" ng-model="data.password" ng-required="true"
-                               ng-enter-focus-next="1" tabindex="4" ng-minlength="8" ng-maxlength="128">
+                               ng-enter-focus-next="1" tabindex="4" ng-minlength="8" ng-maxlength="128"
+                               uib-popover="{{parseErrors(form.password)}}" popover-placement="right" popover-trigger="focus"
+                               popover-is-open="{{true}}" parse-attributes-to="errorMessages.attrs">
                     </div>
                     <div class="form-group" ng-class="{'has-error': !form.conf_password.$valid && !form.conf_password.$pristine,
                                                        'is-valid': !!form.conf_password.$valid && !form.conf_password.$pristine}">
                         <input type="password" class="form-control input-lg" name="conf_password" id="conf_password"
                                placeholder="RE-ENTER PASSWORD" ng-model="data.conf_password" ng-required="true"
-                               tabindex="5" ng-must-match="data.password">
+                               tabindex="5" ng-must-match="data.password"
+                               uib-popover="{{parseErrors(form.conf_password)}}" popover-placement="right" popover-trigger="focus"
+                               popover-is-open="{{true}}" parse-attributes-to="errorMessages.attrs">
                     </div>
                     <div class="form-group text-center noselect" style="cursor:default;margin-top:10px;height:48px;">
                         <label class="checkbox1" for="agree">
