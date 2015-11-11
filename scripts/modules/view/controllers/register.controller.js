@@ -6,7 +6,7 @@
         ['Socket', 'Authentication', '$scope', '$location',
             function(Socket, Authentication, $scope, $location) {
                 $scope.awaitingResponse = false;
-                $scope.data = {
+                $scope.registerFormData = $scope.data = {
                     username: '',
                     password: '',
                     conf_password: '',
@@ -15,35 +15,33 @@
                     agree: false,
                     refer: undefined,
                     errors: '',
-                    errorLevel: '',
+                    errorLevel: ''
                 };
 
                 $scope.errorMessages = {
-                    minlength: 'Must be at least {ngMinlength} characters.',
-                    maxlength: 'Must be no more than {ngMaxlength} character.',
+                    minlength: 'Must be at least {minlength} characters.',
+                    maxlength: 'Must be less than {maxlength} character.',
                     email: 'This is not a valid email address.',
-                    pattern: 'Username may not contain any `{lambda:' +
-                                'var re, pat = "{ngPattern}";' +
-                                'pat = pat.match(/\[([^\]]+)]/)[1];' +
+                    pattern: 'Username may not contain any `{func:' +
+                                'var re, pat = String({pattern});' +
+                                'pat = pat.match(/\\[([^\\]]+)]/)[1];' +
                                 're = eval("/[^" + pat + "]/");' +
-                                'return (re === " ") ? "space" : "{value}".match(re)[0];' +
-                             '}`s.',
+                                're = "{value}".match(re)[0];' +
+                                'return (re === " ") ? "space" : re;' +
+                             '/func}`s.',
                     required: 'This field is required.',
                     mustMatch: 'Does not match {lambda:return "{name}".replace("conf_", "");} field.',
-                    attrs: {}
                 };
 
-                $scope.parseErrors = function (element) {
+                $scope.parseErrors = function (element, meta) {
                     if (!element) return '';
                     for (var key in element.$error) {
                         if (element.$error.hasOwnProperty(key) && $scope.errorMessages.hasOwnProperty(key)) {
-                            return $scope.formatError($scope.errorMessages[key],
-                                                      $scope.errorMessages.attrs[element.$name],
-                                                      {value: element.$viewValue});
+                            var val = element.$viewValue.replace(/\\/g, "\\\\");
+                            return $scope.formatError($scope.errorMessages[key], meta,
+                                                      {value: val});
                         }
                     }
-                    console.log('NO ERROR: \n\t');
-                    console.log(element.$error);
                 };
 
                 $scope.formatError = function (message, attrs, extra) {
@@ -52,7 +50,7 @@
                         return m.charAt(0) + (attrs.hasOwnProperty(attr) ? attrs[attr]
                                                 : extra.hasOwnProperty(key) ? extra[key] : key);
                     });
-                    return message.replace(/\{lambda:([^}]+)}/g, function (m, script) {
+                    return message.replace(/\{func:(.+)\/func}/g, function (m, script) {
                         try {
                             var func = new Function(script);
                             return func();

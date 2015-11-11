@@ -8,8 +8,8 @@
             link: function (scope, element, attrs) {
                 element.bind("keydown keypress", function (event) {
                     var key = event.keyCode || event.which;
-                    var i, el, depth = attrs.ngEnterFocusNext || 0;
-                    if (key === 13) {
+                    var i, el, depth = attrs.ngEnterFocusNext;
+                    if (key === 13 && typeof(depth) !== 'undefined') {
                         event.preventDefault();
                         el = element;
                         for (i = 0; i < depth; i++) {
@@ -23,8 +23,8 @@
                             window.el2 = el;
                         }
                         el.focus();
-                        window.scope = scope;
                     }
+                    return true;
                 });
             }
         };

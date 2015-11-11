@@ -1,0 +1,39 @@
+<div ng-if="['select', 'check', 'submit'].indexOf(meta.type) === -1" class="form-group"
+     ng-class="{'has-error': !parentForm[meta.name].$valid && !parentForm[meta.name].$pristine,
+                'is-valid': !!parentForm[meta.name].$valid && !parentForm[meta.name].$pristine}">
+
+    <input type="{{meta.type}}"
+           class="form-control input-lg"
+           name="{{meta.name}}"
+           ng-model="parentData[meta.name]"
+           placeholder="{{meta.placeholder}}"
+           ng-required="{{meta.required}}"
+           ng-enter-focus-next="{{meta.lastTabField ? 'undefined' : meta.nested}}"
+           tabindex="{{meta.num}}"
+           ng-trim="{{meta.trim}}"
+           ng-pattern="meta.pattern"
+           ng-minlength="{{meta.minlength ? meta.minlength : 'undefined'}}"
+           ng-maxlength="{{meta.maxlength ? meta.maxlength : 'undefined'}}"
+           ng-focus="isFocused = true"
+           ng-blur="isFocused = false"
+           ng-must-match="{{meta.confirm}}"
+           ng-must-match-parent-scope>
+
+    <div class="right fade popover in" style=""
+         ng-hide="!parentForm[meta.name].$dirty || !!parentForm[meta.name].$valid || !isFocused">
+        <div class="arrow"></div>
+        <div class="popover-inner">
+            <div class="popover-content">{{parseErrors()}}</div>
+        </div>
+    </div>
+
+</div>
+
+<div ng-if="meta.type === 'submit'" class="form-group">
+
+    <button ng-disabled="!parentForm.$valid"
+            type="submit" class="btn btn-default">
+        <img src="images/arrow.png" alt="submit form">
+    </button>
+
+</div>
