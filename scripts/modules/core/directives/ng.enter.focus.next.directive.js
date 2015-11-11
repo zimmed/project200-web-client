@@ -8,7 +8,7 @@
             link: function (scope, element, attrs) {
                 element.bind("keydown keypress", function (event) {
                     var key = event.keyCode || event.which;
-                    var i, el, depth = attrs.ngEnterFocusNext;
+                    var i, el, depth = Number(attrs.ngEnterFocusNext);
                     if (key === 13 && typeof(depth) !== 'undefined') {
                         event.preventDefault();
                         el = element;
@@ -17,10 +17,7 @@
                         }
                         el = el.next()[0];
                         for (i = 0; i < depth; i++) {
-                            console.log(el);
-                            window.el = el;
-                            el = el.children[0]
-                            window.el2 = el;
+                            el = el.children[0];
                         }
                         el.focus();
                     }

@@ -21,40 +21,20 @@
                 <div class="form-groups col-xs-12">
                     <form-group form="registerForm" name="username" trim="false" minlength="4" pattern="/^[a-zA-Z0-9\._\-]+$/"></form-group>
                     <form-group form="registerForm" name="email" type="email" minlength="6"></form-group>
-                    <form-group form="registerForm" name="conf_email" nextGroupNestLevel="2"></form-group>
+                    <form-group form="registerForm" name="conf_email" next-group-nest-level="2"></form-group>
                 </div>
                 <div class="form-groups col-xs-12">
-                    <div class="form-group" ng-class="{'has-error': !form.password.$valid && !form.password.$pristine,
-                                                       'is-valid': !!form.password.$valid && !form.password.$pristine}">
-                        <input type="password" class="form-control input-lg" id="password" name="password"
-                               placeholder="PASSWORD" ng-model="data.password" ng-required="true"
-                               ng-enter-focus-next="1" tabindex="4" ng-minlength="8" ng-maxlength="128"
-                               uib-popover="NO" popover-placement="right" popover-trigger="focus"
-                               popover-is-open="{{true}}">
-                    </div>
-                    <div class="form-group" ng-class="{'has-error': !form.conf_password.$valid && !form.conf_password.$pristine,
-                                                       'is-valid': !!form.conf_password.$valid && !form.conf_password.$pristine}">
-                        <input type="password" class="form-control input-lg" name="conf_password" id="conf_password"
-                               placeholder="RE-ENTER PASSWORD" ng-model="data.conf_password" ng-required="true"
-                               tabindex="5" ng-must-match="data.password"
-                               uib-popover="NO" popover-placement="right" popover-trigger="focus"
-                               popover-is-open="{{true}}">
-                    </div>
-                    <div class="form-group text-center noselect" style="cursor:default;margin-top:10px;height:48px;">
-                        <label class="checkbox1" for="agree">
-                            <input id="agree" name="agree" type="checkbox" ng-required="true" tabindex="6"
-                                   ng-model="data.agree">
-                            <span></span>
-                        </label>
-                        I agree to the T.O.S.
-                    </div>
+                    <form-group form="registerForm" name="password" type="password" minlength="8"></form-group>
+                    <form-group form="registerForm" name="conf_password" type="password" on-enter-submit></form-group>
+                    <form-group label="I agree to the Terms." form="registerForm" name="agree" on-enter-submit
+                                div-style="cursor:default;margin-top:10px;height:48px;" type="checkbox"></form-group>
                 </div>
             </div>
             <div class="table-form">
                 <div class="form-groups error-message col-xs-12">
                 </div>
                 <div class="form-groups col-xs-12">
-
+                    <form-group form="registerForm" type="submit" on-enter-submit></form-group>
                 </div>
             </div>
 

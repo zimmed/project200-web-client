@@ -130,43 +130,13 @@
 		   padding-top: 2px;  
 		}
 		.login {
-			height: 110px;
-			width: 100px;
-			border-radius: 0;
-			background: orange;
-			border-color: orange;
-			box-shadow: none;
-			margin-left: 15px;
-			color: white;
-			&:focus {
-				outline: none;
-				outline-offset: none;
-			}
+
 		}
 		.register {
-			.input-lg;
-			width: 100%;
-			color: white;
-			height: 46px;
-			padding: 0;
-			background: orange;
-			border: none;
-			left: 50%;
-			margin-top: 5px;
+
 		}
 		.welcome {
-			.login;
-			width: 100%;
-			height: 92px;
-			font-size: 2em;
-			font-weight: bold;
-			background: darkorange;
-			color: white;
-			border: none;
-			&.signup {
-				//background: #EA7D65;
-				background: orange;
-			}
+
 		}
 	}
 	.remember {
@@ -178,6 +148,44 @@
 			float: right;
 			padding-top: 2px;
 		}
+	}
+}
+
+.btn-form {
+	height: 110px;
+	width: 100px;
+	border-radius: 0;
+	background: orange;
+	border-color: orange;
+	box-shadow: none;
+	margin-left: 15px;
+	color: white;
+	&:focus {
+		outline: none;
+		outline-offset: none;
+	}
+}
+.register-page .btn-form {
+	width: 100%;
+	color: white;
+	height: 46px;
+	padding: 0;
+	background: orange;
+	border: none;
+	left: 50%;
+	margin-top: 5px;
+}
+.welcome-page .btn-form {
+	width: 100%;
+	height: 92px;
+	font-size: 2em;
+	font-weight: bold;
+	background: darkorange;
+	color: white;
+	border: none;
+	&.signup {
+		//background: #EA7D65;
+		background: orange;
 	}
 }
 
@@ -216,7 +224,7 @@
 	right:45px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
 	.register-page,
 	.login-page {
 		&:before {

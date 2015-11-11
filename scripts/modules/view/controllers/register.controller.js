@@ -22,7 +22,7 @@
                     minlength: 'Must be at least {minlength} characters.',
                     maxlength: 'Must be less than {maxlength} character.',
                     email: 'This is not a valid email address.',
-                    pattern: 'Username may not contain any `{func:' +
+                    pattern: 'Username may not contain `{func:' +
                                 'var re, pat = String({pattern});' +
                                 'pat = pat.match(/\\[([^\\]]+)]/)[1];' +
                                 're = eval("/[^" + pat + "]/");' +
@@ -30,14 +30,14 @@
                                 'return (re === " ") ? "space" : re;' +
                              '/func}`s.',
                     required: 'This field is required.',
-                    mustMatch: 'Does not match {lambda:return "{name}".replace("conf_", "");} field.',
+                    mustMatch: 'Does not match {func:return "{name}".replace("conf_", "");/func} field.'
                 };
 
                 $scope.parseErrors = function (element, meta) {
                     if (!element) return '';
                     for (var key in element.$error) {
                         if (element.$error.hasOwnProperty(key) && $scope.errorMessages.hasOwnProperty(key)) {
-                            var val = element.$viewValue.replace(/\\/g, "\\\\");
+                            var val = (element.$viewValue || '').replace(/\\/g, "\\\\");
                             return $scope.formatError($scope.errorMessages[key], meta,
                                                       {value: val});
                         }

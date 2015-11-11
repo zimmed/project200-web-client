@@ -30,7 +30,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
 
     .ng-scope {
         background: rgba(7, 99, 36, 0.31);
@@ -65,7 +65,17 @@
     }
 }
 
+@media (max-width: 625px), (min-width: 768px) and (max-width: 1050px) {
+    .form-group.has-error > input {
+        width:100% !important;
+        margin-bottom: 0 !important;
+    }
+    .form-group.has-error {
+        max-height: 100px;
+    }
+    .form-group.has-error
 
+}
 
 .login-page .photo img, .register-page .photo img {
     cursor: pointer;
@@ -97,12 +107,11 @@
     max-height: 62px;
 }
 
-.form-group.has-error .popover {
-    /** display: block !important; **/
-}
-
-.form-group .popover .arrow::after {
+.form-group .popover.right .arrow::after {
     border-right-color: orange;
+}
+.form-group .popover.bottom .arrow::after {
+    border-bottom-color: orange;
 }
 
 /** Generic Classes **/
